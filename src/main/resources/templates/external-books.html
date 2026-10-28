@@ -1,33 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="LT">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Library - External books</title>
+    <th:block th:fragment="head">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+        <style>
+            body { padding-top: 70px; }
+        </style>
+    </th:block>
+    <title>Library</title>
 </head>
 <body>
-<h1>External books</h1>
 
-<h2>All external books</h2>
+<div th:fragment="navbar(active)" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#main-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/books}">Library</a>
+        </div>
+        <div id="main-navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li th:classappend="${active == 'books'} ? 'active'">
+                    <a th:href="@{/books}">Books</a>
+                </li>
+                <li th:classappend="${active == 'external'} ? 'active'">
+                    <a th:href="@{/external-books}">External books</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-default">Log out</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h1>External books</h1>
 
-<table th:if="${books}">
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Genre</th>
-        <th>Price</th>
-        <th>ISBN</th>
-        <th>Year</th>
-    </tr>
-    <tr th:each="b : ${books}">
-        <td th:text="${b.id}"></td>
-        <td th:text="${b.title}"></td>
-        <td th:text="${b.author}"></td>
-        <td th:text="${b.genre}"></td>
-        <td th:text="${b.price}"></td>
-        <td th:text="${b.isbn}"></td>
-        <td th:text="${b.publishedYear}"></td>
-    </tr>
-</table>
+    <div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
+
+    <table th:if="${books}" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>ISBN</th>
+            <th>Year</th>
+        </tr>
+        <tr th:each="b : ${books}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.title}"></td>
+            <td th:text="${b.author}"></td>
+            <td th:text="${b.genre}"></td>
+            <td th:text="${b.price}"></td>
+            <td th:text="${b.isbn}"></td>
+            <td th:text="${b.publishedYear}"></td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
