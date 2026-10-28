@@ -19,3 +19,21 @@ Complete all of the 'TODO' portions of the code. The finished application should
 - Custom exception handling
 - Searching by partial title
 - Add 'borrow' and 'return' endpoints along with the new 'borrowedStatus' field to the Book entity
+
+## M11 Task
+Practice Starting point: A Spring Boot application with JPA, a browser UI, and REST endpoints. 
+#
+Tasks: 
+  1. Configure Spring Security with SecurityFilterChain
+  2. Add browser form login and protect the UI
+  3. Keep CSRF enabled for browser forms
+  4. Protect REST endpoints: GET → authenticated users POST, PUT, DELETE → ADMIN only
+  5. Configure a database-backed user with: • BCrypt password • USER or ADMIN role
+  6. Add one secured outbound API call: • Send an API key or bearer token • Store the credential outside source code
+  7. Test:
+     - • Unauthenticated request → 401 or login page
+     - • USER reading data → success
+     - • USER attempting a write → 403
+     - • ADMIN writing data → success
+     - • Missing CSRF token → rejected
+     - • External API failure → handled clearly
