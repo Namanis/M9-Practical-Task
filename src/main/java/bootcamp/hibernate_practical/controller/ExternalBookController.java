@@ -1,9 +1,7 @@
 package bootcamp.hibernate_practical.controller;
 
-import bootcamp.hibernate_practical.client.ExternalApiException;
 import bootcamp.hibernate_practical.client.ExternalBookClient;
 import bootcamp.hibernate_practical.dto.LvBootcampBookResponse;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
