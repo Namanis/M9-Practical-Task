@@ -1,5 +1,6 @@
 package bootcamp.hibernate_practical.exception;
 
+import bootcamp.hibernate_practical.client.ExternalApiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.ErrorResponse;
@@ -56,6 +57,11 @@ public class GlobalExceptionHandler {
             message += ". Allowed values: " + allowed;
         }
         return ErrorResponse.create(exception, HttpStatus.BAD_REQUEST, message);
+    }
+
+    @ExceptionHandler(ExternalApiException.class)
+    public ErrorResponse handleExternalApi(ExternalApiException exception) {
+        return ErrorResponse.create(exception, HttpStatus.BAD_GATEWAY, exception.getMessage());
     }
 
 }
