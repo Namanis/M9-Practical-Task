@@ -1,4 +1,5 @@
 # M11 Task 7: Testing
+Set EXTERNAL_API_TOKEN=Token in Intelij run -> edit configuration -> enviroment Variables
 
 ## Unauthenticated request → 401 or login page
 
